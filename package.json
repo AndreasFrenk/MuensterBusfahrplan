@@ -10,6 +10,7 @@
     "axios": "^0.21.1",
     "bootstrap": "^5.0.0-beta1",
     "leaflet": "^1.7.1",
+    "leaflet-extra-markers": "^1.2.1",
     "leaflet.awesome-markers": "^2.0.5",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",

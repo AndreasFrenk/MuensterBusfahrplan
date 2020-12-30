@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { iconPerson, testIcon } from "../icon";
 import L from "leaflet";
+import ExtraMarkers from "leaflet-extra-markers";
 
 class BusDriving extends Component {
   render() {
@@ -14,10 +15,11 @@ class BusDriving extends Component {
           <Marker
             icon={
               new L.ExtraMarkers.icon({
-                icon: "fa-coffee",
+                icon: "home",
                 markerColor: "red",
                 shape: "square",
                 prefix: "fa",
+                iconSize: [12, 12],
               })
             }
             key={this.props.items.indexOf(item)}
