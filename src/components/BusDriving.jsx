@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import { iconPerson } from "../icon";
+import { iconPerson, testIcon } from "../icon";
+import L from "leaflet";
+
 class BusDriving extends Component {
   render() {
     if (!this.props.isLoaded) {
@@ -10,7 +12,14 @@ class BusDriving extends Component {
       return this.props.items.map((item) => {
         return (
           <Marker
-            icon={iconPerson}
+            icon={
+              new L.ExtraMarkers.icon({
+                icon: "fa-coffee",
+                markerColor: "red",
+                shape: "square",
+                prefix: "fa",
+              })
+            }
             key={this.props.items.indexOf(item)}
             position={[
               item.geometry.coordinates[1],

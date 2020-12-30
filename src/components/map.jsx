@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import BusDriving from "./BusDriving";
+import L from "leaflet";
+import { iconPerson, testIcon } from "../icon";
 
 class Map extends Component {
   render() {
@@ -12,23 +14,13 @@ class Map extends Component {
         <MapContainer
           center={[51.961563, 7.628202]}
           zoom={13}
-          scrollWheelZoom={false}
+          scrollWheelZoom={true}
         >
           <TileLayer
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
           <BusDriving items={this.props.items} isLoaded={this.props.isLoaded} />
-          <Marker position={[51.961563, 7.628202]}>
-            <Popup>
-              A pretty CSS3 popup. <br /> Easily customizable.
-            </Popup>
-          </Marker>
-          <Marker position={[51.961563, 7.678802]}>
-            <Popup>
-              A pretty CSS3 popup. <br /> Easily customizable.
-            </Popup>
-          </Marker>
         </MapContainer>
       );
     }

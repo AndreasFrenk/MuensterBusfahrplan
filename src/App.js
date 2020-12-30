@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import BusApi from "./components/bus-api";
 import Map from "./components/map";
 
 class Apps extends Component {
@@ -23,7 +22,11 @@ class Apps extends Component {
       });
   }
   render() {
-    return <Map items={this.state.items} isLoaded={this.state.isLoaded} />;
+    return (
+      <div>
+        <Map items={this.state.items} isLoaded={this.state.isLoaded} />
+      </div>
+    );
   }
 }
 
