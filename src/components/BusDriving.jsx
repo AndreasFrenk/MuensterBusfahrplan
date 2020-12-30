@@ -15,11 +15,12 @@ class BusDriving extends Component {
           <Marker
             icon={
               new L.ExtraMarkers.icon({
-                icon: "home",
+                icon: "fa-coffee",
                 markerColor: "red",
+                iconColor:"red",
                 shape: "square",
                 prefix: "fa",
-                iconSize: [12, 12],
+                iconSize: [18, 18],
               })
             }
             key={this.props.items.indexOf(item)}
