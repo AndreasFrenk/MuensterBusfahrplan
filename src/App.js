@@ -5,13 +5,32 @@ class Apps extends Component {
   constructor(props) {
     super(props);
     console.log("constructing");
+    this.interval = 0;
     this.state = {
       items: [],
       isLoaded: false,
+      currentCount: 0,
     };
   }
 
+  timer() {
+    this.setState({
+      currentCount: this.state.currentCount + 1
+    })
+    if(this.state.currentCount >= 10) {
+      this.getData();
+      this.setState({
+        currentCount: 0
+      });
+    }
+  }
+
   componentDidMount() {
+    this.getData();
+    setInterval(this.timer.bind(this), 1000);
+  }
+
+  getData() {
     fetch("https://rest.busradar.conterra.de/prod/fahrzeuge")
       .then((res) => res.json())
       .then((json) => {
@@ -19,8 +38,9 @@ class Apps extends Component {
           isLoaded: true,
           items: json.features,
         });
-      });
+      })
   }
+
   render() {
     return (
       <div>

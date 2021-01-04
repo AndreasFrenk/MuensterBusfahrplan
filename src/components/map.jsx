@@ -3,14 +3,29 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import BusDriving from "./BusDriving";
 import L from "leaflet";
 import { iconPerson, testIcon } from "../icon";
+import BusDialog from "./BusDialog";
+import ReactDOM from 'react-dom';
 
+let dialog = false;
 class Map extends Component {
+  dialog = false;  
+  openDialog(){
+    dialog = true;
+    ReactDOM.render(<BusDialog />, document.querySelector('#root'));
+    // return (
+    //   <div>
+    //     <p>test</p>
+    //   </div>
+    // )
+  }
   render() {
     if (!this.props.isLoaded) {
       return <div>wait</div>;
     } else {
-      console.log(this.props.items[0].geometry.coordinates[0]);
-      return (
+      // if (!dialog){
+        if (true){
+          return (
+        <div>
         <MapContainer
           center={[51.961563, 7.628202]}
           zoom={13}
@@ -21,8 +36,16 @@ class Map extends Component {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
           <BusDriving items={this.props.items} isLoaded={this.props.isLoaded} />
-        </MapContainer>
+       </MapContainer>
+       <button style={{position:'relative'}}onClick={this.openDialog}>TEST</button>
+       </div>
       );
+    }
+    else {
+      return <div>
+        <p>test</p>
+      </div>;
+    }
     }
   }
 }

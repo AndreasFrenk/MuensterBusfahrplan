@@ -9,8 +9,9 @@ class BusDriving extends Component {
     if (!this.props.isLoaded) {
       return "hi";
     } else {
-      console.log(this.props.items[0].properties.linienid);
       return this.props.items.map((item) => {
+        // console.log(item);
+        if (item.properties.linienid === "4"){
         return (
           <Marker
             icon={
@@ -28,6 +29,8 @@ class BusDriving extends Component {
               item.geometry.coordinates[1],
               item.geometry.coordinates[0],
             ]}
+            
+        
           >
             <Popup>
               Linie: {item.properties.linienid} <br /> Richtung:{" "}
@@ -35,6 +38,7 @@ class BusDriving extends Component {
             </Popup>
           </Marker>
         );
+      }
       });
     }
   }
