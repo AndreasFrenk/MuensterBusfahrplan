@@ -4,8 +4,6 @@ import busIconGelb from "./assets/bus_gelb.svg";
 import busIconGrün from "./assets/bus_grün.svg";
 import stopicon from "./assets/Haltestelle.svg";
 
-var i = 1;
-
 const busIconRed = new L.Icon({
   iconUrl: busIconRot,
   iconSize: [24, 24],

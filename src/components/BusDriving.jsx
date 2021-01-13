@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { Marker, Popup } from "react-leaflet";
 import { busIconRed, busIconGreen, busIconYellow } from "../icon";
 import L from "leaflet";
-import ExtraMarkers from "leaflet-extra-markers";
 import { v4 as uuidv4 } from "uuid";
 
 class BusDriving extends Component {
@@ -10,7 +9,6 @@ class BusDriving extends Component {
     if (!this.props.isLoadedBus) {
       return "hi";
     } else {
-      console.log(this.okay());
       return this.okay();
     }
   }
