@@ -1,24 +1,39 @@
 import L from "leaflet";
-import AwesomeMarkers from "leaflet.awesome-markers";
-import busicon from "./bus-icon.svg";
+import busIconRot from "./assets/bus_rot.svg";
+import busIconGelb from "./assets/bus_gelb.svg";
+import busIconGrün from "./assets/bus_grün.svg";
+import stopicon from "./assets/Haltestelle.svg";
 
-var i = 1;
-const iconPerson = new L.Icon({
-  iconUrl: busicon,
-  iconRetinaUrl: busicon,
+const busIconRed = new L.Icon({
+  iconUrl: busIconRot,
   iconSize: [24, 24],
   iconAnchor: [12, 12],
-  popupAnchor: [-12, 12],
+  popupAnchor: [0, -6],
   className: "leaflet-div-icon",
-  html: i + 1,
-  number: i + 1,
 });
 
-var testIcon = new L.AwesomeMarkers.icon({
-  markerColor: "blue",
-  number: 1,
-  icon: "home",
-  html: 1,
+const busIconYellow = new L.Icon({
+  iconUrl: busIconGelb,
+  iconSize: [24, 24],
+  iconAnchor: [12, 12],
+  popupAnchor: [0, -6],
+  className: "leaflet-div-icon",
 });
 
-export { iconPerson, testIcon };
+const busIconGreen = new L.Icon({
+  iconUrl: busIconGrün,
+  iconSize: [24, 24],
+  iconAnchor: [12, 12],
+  popupAnchor: [0, -6],
+  className: "leaflet-div-icon",
+});
+
+const busStopIcon = new L.Icon({
+  iconUrl: stopicon,
+  iconRetinaUrl: stopicon,
+  iconSize: [24, 24],
+  iconAnchor: [12, 12],
+  popupAnchor: [0, -12],
+});
+
+export { busStopIcon, busIconRed, busIconYellow, busIconGreen };
