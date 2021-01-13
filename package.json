@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.1",
+    "@skyeer/react-leaflet-custom-control": "0.0.6",
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^12.6.0",
@@ -11,11 +12,14 @@
     "bootstrap": "^5.0.0-beta1",
     "leaflet": "^1.7.1",
     "leaflet-extra-markers": "^1.2.1",
+    "leaflet-roughcanvas": "^1.0.0",
+    "leaflet-routing-machine": "^3.2.12",
     "leaflet.awesome-markers": "^2.0.5",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-leaflet": "^3.0.5",
     "react-scripts": "4.0.1",
+    "tripkit-leaflet": "^1.0.3",
     "web-vitals": "^0.2.4"
   },
   "scripts": {

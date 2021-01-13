@@ -1,30 +1,73 @@
-import React, { Component } from "react";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import React, { Component, useState } from "react";
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+  Polyline,
+  withLeaflet,
+} from "react-leaflet";
+import Control from "@skyeer/react-leaflet-custom-control";
 import BusDriving from "./BusDriving";
-import L from "leaflet";
+import BusStops from "./BusStops";
+import L, { map } from "leaflet";
 import { iconPerson, testIcon } from "../icon";
 
-class Map extends Component {
+const position = [51.961563, 7.628202];
+
+class BusMap extends Component {
   render() {
-    if (!this.props.isLoaded) {
+    const center = (props) => {
+      if (this.props.positionLoaded) {
+        return this.props.currentPosition;
+      } else {
+        return [51.961563, 7.628202];
+      }
+    };
+    if (!this.props.isLoadedBus) {
       return <div>wait</div>;
     } else {
-      console.log(this.props.items[0].geometry.coordinates[0]);
+      console.log();
+      console.log(this.props.currentPosition);
+      const polyline = [
+        [
+          this.props.itemsBus[0].geometry.coordinates[1],
+          this.props.itemsBus[0].geometry.coordinates[0],
+        ],
+        [
+          this.props.itemsBus[1].geometry.coordinates[1],
+          this.props.itemsBus[1].geometry.coordinates[0],
+        ],
+        [
+          this.props.itemsBus[2].geometry.coordinates[1],
+          this.props.itemsBus[2].geometry.coordinates[0],
+        ],
+      ];
       return (
-        <MapContainer
-          center={[51.961563, 7.628202]}
-          zoom={13}
-          scrollWheelZoom={true}
-        >
-          <TileLayer
-            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
-          <BusDriving items={this.props.items} isLoaded={this.props.isLoaded} />
-        </MapContainer>
+        <div>
+          <MapContainer
+            center={center()}
+            zoom={this.props.zoom}
+            scrollWheelZoom={true}
+          >
+            <TileLayer
+              attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+            <BusDriving
+              itemsBus={this.props.itemsBus}
+              isLoadedBus={this.props.isLoadedBus}
+            />
+            <BusStops
+              itemsStop={this.props.itemsStop}
+              isLoadedStops={this.props.isLoadedStops}
+            />
+            <Polyline pathOptions={{ color: "lime" }} positions={polyline} />
+          </MapContainer>
+        </div>
       );
     }
   }
 }
 
-export default Map;
+export default BusMap;
