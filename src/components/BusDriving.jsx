@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { Marker, Popup } from "react-leaflet";
 import { iconPerson, testIcon } from "../icon";
 import L from "leaflet";
 import ExtraMarkers from "leaflet-extra-markers";
@@ -10,8 +10,7 @@ class BusDriving extends Component {
       return "hi";
     } else {
       return this.props.items.map((item) => {
-        // console.log(item);
-        if (item.properties.linienid === "4"){
+      if (this.props.filter.length > 0 ? this.props.filter.includes(item.properties.linienid): true){
         return (
           <Marker
             icon={
