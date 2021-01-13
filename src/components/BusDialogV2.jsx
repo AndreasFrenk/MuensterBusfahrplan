@@ -16,19 +16,24 @@ const columns = [
   },
   {
     name: 'Starthaltestelle',
-    selector: 'starthst',
+    selector: 'Starthaltestelle',
     sortable: true,
   },
   {
     name: 'Zielhaltestelle',
-    selector: 'zielhst',
+    selector: 'Zielhaltestelle',
+    sortable: true,
+  },
+  {
+    name: 'Aktuelle Haltestelle',
+    selector: 'Aktuellhaltestelle',
     sortable: true,
   },
   {
     name: 'Verspätung',
     selector: 'delay',
     sortable: true,
-  }
+  },
 ];
 
 class BusDialogV2 extends Component {
@@ -41,21 +46,12 @@ class BusDialogV2 extends Component {
     };
   }
 
-  componentDidMount() {
-  }
-
   render() {
-
       return (
         <div className="Filter">
-
-
           <DropdownButton id="dropdown-item-button" title="Busfilter">
-
             <Form>
-              {/* {['checkbox', 'radio'].map((type) => ( */}
               {this.props.AllLines.map((bus) => (
-                
                 <div key={`${bus.id}`} className="mb-3">
                   <Form.Check
                     type={"checkbox"}

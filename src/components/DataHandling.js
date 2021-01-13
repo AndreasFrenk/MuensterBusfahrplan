@@ -6,24 +6,18 @@ export default class DataHandling {
   
 
   getBusStops (data) {
-    const haltestellen = [];
-    let haltestelle;
-    data?.map((item) => {
-
-      haltestelle = {
-        nr: item.properties.nr,
-        lbez: item.properties.lbez,
-      }
-      haltestellen.push(haltestelle);
+    const haltestellen =  {};
+    data?.forEach((item) => {
+      haltestellen[item.properties.nr] = item.properties.lbez;
     })
     return haltestellen;
   }
   
-  getBusLines(data, filter, haltestellen) {
+  getBusLines(data, filter) {
     const linesArray = [];
     const lines = [];
     let bus;
-    data?.map((item) => {
+    data?.forEach((item) => {
       if (!lines.includes(item.properties.linienid)){
         if(!filter.includes(item.properties.linienid)){
           bus = {
@@ -48,17 +42,19 @@ export default class DataHandling {
     return linesArray;
   }
 
-  getBusInformation(data, filter) {
+  getBusInformation(data, filter, haltestellen) {
     const busArray = [];
     let bus;
     if (filter.length > 0) {
-      data?.map((item) => {
+      data?.forEach((item) => {
         filter.forEach(filterItem => {
           if (filterItem === item.properties.linienid) {
             bus = item.properties;
             bus['longitude'] = item.geometry.coordinates[0];
             bus['latitude'] = item.geometry.coordinates[1];
             bus['id'] = uuidv4();
+            bus['Starthaltestelle'] = haltestellen[item.properties.starthst];
+            bus['Zielhaltestelle'] = haltestellen[item.properties.zielhst];
             busArray.push(bus);
           }
         })
@@ -76,6 +72,10 @@ export default class DataHandling {
       bus['longitude'] = item.geometry.coordinates[0];
       bus['latitude'] = item.geometry.coordinates[1];
       bus['id'] = uuidv4();
+      bus['Starthaltestelle'] = haltestellen[item.properties.starthst];
+      bus['Zielhaltestelle'] = haltestellen[item.properties.zielhst];
+      bus['Aktuellhaltestelle'] = haltestellen[item.properties.akthst];
+
       busArray.push(bus);
     });
     busArray.sort((a, b) => {
@@ -85,19 +85,5 @@ export default class DataHandling {
     return busArray;
   }
 
-  //   filterBusses(data, fahrzeugid){
-  //     const busArray = [];
-  //     let bus;
-  //     data?.map((item) => {
-  //         if (item.properties.fahrzeugid === fahrzeugid){
-  //         bus = item.properties;
-  //         bus['longitude'] = item.geometry.coordinates[0];
-  //         bus['latitude'] = item.geometry.coordinates[1];
-  //         busArray.push(bus);          
-  //     }
-  //     });
-  //     console.log(busArray);
-  //     return busArray;
-  // }
 }
 

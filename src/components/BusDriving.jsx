@@ -3,24 +3,30 @@ import { Marker, Popup } from "react-leaflet";
 import { busIconRed, busIconGreen, busIconYellow } from "../icon";
 import L from "leaflet";
 import { v4 as uuidv4 } from "uuid";
+import ExtraMarkers from "leaflet-extra-markers";
 
 class BusDriving extends Component {
   render() {
-    if (!this.props.isLoadedBus) {
-      return "hi";
-    } else {
-      return this.okay();
-    }
+    return this.loadComponent();
   }
 
-  okay() {
-    return this.props.itemsBus.map(function (item) {
-      if (item.properties.delay > 20) {
+  loadComponent() {
+    return this.props.itemsBus.map(((item) => {
+      if (
+        this.props.filter.length > 0
+          ? this.props.filter.includes(item.properties.linienid)
+          : true
+      ) {
         return (
-          <div>
+          <div key={uuidv4()}>
             <Marker
-              icon={busIconRed}
-              key={uuidv4()}
+              icon={
+                item.properties.delay > 20
+                  ? busIconRed
+                  : item.properties.delay >= 10
+                  ? busIconYellow
+                  : busIconGreen
+              }
               position={[
                 item.geometry.coordinates[1],
                 item.geometry.coordinates[0],
@@ -44,91 +50,6 @@ class BusDriving extends Component {
                   iconAnchor: [2, 0],
                 })
               }
-              key={uuidv4()}
-              position={[
-                item.geometry.coordinates[1],
-                item.geometry.coordinates[0],
-              ]}
-            >
-              <Popup>
-                Linie: {item.properties.linienid} <br /> Richtung:{" "}
-                {item.properties.richtungstext}
-              </Popup>
-            </Marker>
-          </div>
-        );
-      } else if (item.properties.delay >= 10) {
-        return (
-          <div>
-            <Marker
-              icon={busIconYellow}
-              key={uuidv4()}
-              position={[
-                item.geometry.coordinates[1],
-                item.geometry.coordinates[0],
-              ]}
-              opacity="1"
-              size="30px"
-            >
-              <Popup>
-                Linie: {item.properties.linienid} <br /> Richtung:{" "}
-                {item.properties.richtungstext}
-              </Popup>
-            </Marker>
-            <Marker
-              icon={
-                new L.ExtraMarkers.icon({
-                  shape: "",
-                  innerHTML: item.properties.linienid.toString(),
-                  color: "red",
-                  iconColor: "red",
-                  iconSize: [24, 24],
-                  iconAnchor: [2, 0],
-                })
-              }
-              key={uuidv4()}
-              position={[
-                item.geometry.coordinates[1],
-                item.geometry.coordinates[0],
-              ]}
-            >
-              <Popup>
-                Linie: {item.properties.linienid} <br /> Richtung:{" "}
-                {item.properties.richtungstext}
-              </Popup>
-            </Marker>
-          </div>
-        );
-      } else {
-        return (
-          <div>
-            <Marker
-              icon={busIconGreen}
-              key={uuidv4()}
-              position={[
-                item.geometry.coordinates[1],
-                item.geometry.coordinates[0],
-              ]}
-              opacity="1"
-              size="30px"
-            >
-              <Popup>
-                Linie: {item.properties.linienid} <br /> Richtung:{" "}
-                {item.properties.richtungstext}
-              </Popup>
-            </Marker>
-            <Marker
-              icon={
-                new L.ExtraMarkers.icon({
-                  shape: "",
-                  innerHTML: item.properties.linienid.toString(),
-                  color: "red",
-                  iconColor: "red",
-                  iconSize: [24, 24],
-                  iconAnchor: [2, 0],
-                })
-              }
-              key={uuidv4()}
               position={[
                 item.geometry.coordinates[1],
                 item.geometry.coordinates[0],
@@ -142,7 +63,7 @@ class BusDriving extends Component {
           </div>
         );
       }
-    });
+    }));
   }
 }
 export default BusDriving;
