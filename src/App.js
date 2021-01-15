@@ -39,16 +39,16 @@ class Apps extends Component {
           itemsStop: json.features,
         });
       });
-    if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition((success) =>
-        this.setState({
-          currensposition: [success.coords.latitude, success.coords.longitude],
-          positionLoaded: true,
-        })
-      );
-    } else {
-      console.log("Not Available");
-    }
+    // if ("geolocation" in navigator) {
+    //   navigator.geolocation.getCurrentPosition((success) =>
+    //     this.setState({
+    //       currensposition: [success.coords.latitude, success.coords.longitude],
+    //       positionLoaded: true,
+    //     })
+    //   );
+    // } else {
+    //   console.log("Not Available");
+    // }
   }
   render() {
     return (
