@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import { busIconRed, busIconGreen, busIconYellow } from "../icon";
+// import { busIconRed, busIconGreen, busIconYellow } from "../icon";
 import L from "leaflet";
 import ExtraMarkers from "leaflet-extra-markers";
 import { v4 as uuidv4 } from "uuid";
@@ -21,7 +21,7 @@ class BusDriving extends Component {
         return (
           <div>
             <Marker
-              icon={busIconRed}
+              // icon={busIconRed}
               key={uuidv4()}
               position={[
                 item.geometry.coordinates[1],
@@ -63,7 +63,7 @@ class BusDriving extends Component {
         return (
           <div>
             <Marker
-              icon={busIconYellow}
+              // icon={busIconYellow}
               key={uuidv4()}
               position={[
                 item.geometry.coordinates[1],
@@ -105,7 +105,7 @@ class BusDriving extends Component {
         return (
           <div>
             <Marker
-              icon={busIconGreen}
+              // icon={busIconGreen}
               key={uuidv4()}
               position={[
                 item.geometry.coordinates[1],

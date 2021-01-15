@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import L from "leaflet";
-import { busIcon, busStopIcon } from "../icon";
+// import { busIcon, busStopIcon } from "../icon";
 import { v4 as uuidv4 } from "uuid";
 
 class BusStops extends Component {
@@ -14,7 +14,7 @@ class BusStops extends Component {
       return this.props.itemsStop.map((item) => {
         return (
           <Marker
-            icon={busStopIcon}
+            // icon={busStopIcon}
             key={uuidv4()}
             position={[
               item.geometry.coordinates[1],
