@@ -63,6 +63,7 @@ class Apps extends Component {
           positionLoaded={this.state.positionLoaded}
         />
       </div>
+      
     );
   }
 }

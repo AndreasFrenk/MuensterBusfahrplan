@@ -1,9 +1,9 @@
-// import L from "leaflet";
+import L from "leaflet";
 // import busIconRot from "./assets/bus_rot.svg";
 // import busIconGelb from "./assets/bus_gelb.svg";
 // import busIconGrün from "./assets/bus_grün.svg";
 // import stopicon from "./assets/Haltestelle.svg";
-
+import bus from "./assets/bus.svg";
 // var i = 1;
 
 // const busIconRed = new L.Icon({
@@ -38,4 +38,14 @@
 //   popupAnchor: [0, -12],
 // });
 
+const busIcon = new L.Icon({
+  iconUrl: bus,
+  iconRetinaUrl: bus,
+  iconSize: [24, 24],
+  iconAnchor: [12, 12],
+  popupAnchor: [0, -12],
+});
+
 // export { busStopIcon, busIconRed, busIconYellow, busIconGreen };
+
+export { busIcon };
