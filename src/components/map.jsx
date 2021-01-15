@@ -7,7 +7,6 @@ import {
   Polyline,
   withLeaflet,
 } from "react-leaflet";
-import Control from "@skyeer/react-leaflet-custom-control";
 import BusDriving from "./BusDriving";
 import BusStops from "./BusStops";
 import L, { map } from "leaflet";
