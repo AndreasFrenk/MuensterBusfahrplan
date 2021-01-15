@@ -4,7 +4,7 @@ import { Marker, Popup } from "react-leaflet";
 import { busIcon } from "../icon";
 import L from "leaflet";
 import { v4 as uuidv4 } from "uuid";
-import ExtraMarkers from "leaflet-extra-markers";
+// import ExtraMarkers from "leaflet-extra-markers";
 
 class BusDriving extends Component {
   render() {
@@ -42,16 +42,20 @@ class BusDriving extends Component {
               </Popup>
             </Marker>
             <Marker
-              icon={
-                new L.ExtraMarkers.icon({
-                  shape: "",
-                  innerHTML: item.properties.linienid.toString(),
-                  color: "red",
-                  iconColor: "red",
-                  iconSize: [24, 24],
-                  iconAnchor: [2, 0],
-                })
-              }
+              // icon={
+              //   new L.ExtraMarkers.icon({
+              //     shape: "",
+              //     innerHTML: item.properties.linienid.toString(),
+              //     color: "red",
+              //     iconColor: "red",
+              //     iconSize: [24, 24],
+              //     iconAnchor: [2, 0],
+              //   })
+              // }
+              icon = {L.divIcon({className: 'my-div-icon',
+              html:item.properties.linienid.toString(),
+              iconAnchor: [2, 0],
+             })}
               position={[
                 item.geometry.coordinates[1],
                 item.geometry.coordinates[0],
