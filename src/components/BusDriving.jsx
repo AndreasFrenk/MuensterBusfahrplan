@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Marker, Popup } from "react-leaflet";
-import { busIconRed, busIconGreen, busIconYellow } from "../icon";
+// import { busIconRed, busIconGreen, busIconYellow } from "../icon";
+import { busIcon } from "../icon";
 import L from "leaflet";
 import { v4 as uuidv4 } from "uuid";
 import ExtraMarkers from "leaflet-extra-markers";
@@ -21,11 +22,12 @@ class BusDriving extends Component {
           <div key={uuidv4()}>
             <Marker
               icon={
-                item.properties.delay > 20
-                  ? busIconRed
-                  : item.properties.delay >= 10
-                  ? busIconYellow
-                  : busIconGreen
+                // item.properties.delay > 20
+                //   ? busIconRed
+                //   : item.properties.delay >= 10
+                //   ? busIconYellow
+                //   : busIconGreen
+                busIcon
               }
               position={[
                 item.geometry.coordinates[1],
