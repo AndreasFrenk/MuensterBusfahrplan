@@ -1,7 +1,19 @@
-import React, { Component } from "react";
-import { MapContainer, TileLayer } from "react-leaflet";
+import React, { Component, useState } from "react";
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+  Polyline,
+  withLeaflet,
+} from "react-leaflet";
+import Control from "@skyeer/react-leaflet-custom-control";
 import BusDriving from "./BusDriving";
 import BusStops from "./BusStops";
+import L, { map } from "leaflet";
+import { iconPerson, testIcon } from "../icon";
+
+const position = [51.961563, 7.628202];
 
 class BusMap extends Component {
   render() {
@@ -15,6 +27,22 @@ class BusMap extends Component {
     if (!this.props.isLoadedBus) {
       return <div>wait</div>;
     } else {
+      console.log();
+      console.log(this.props.currentPosition);
+      const polyline = [
+        [
+          this.props.itemsBus[0].geometry.coordinates[1],
+          this.props.itemsBus[0].geometry.coordinates[0],
+        ],
+        [
+          this.props.itemsBus[1].geometry.coordinates[1],
+          this.props.itemsBus[1].geometry.coordinates[0],
+        ],
+        [
+          this.props.itemsBus[2].geometry.coordinates[1],
+          this.props.itemsBus[2].geometry.coordinates[0],
+        ],
+      ];
       return (
         <div>
           <MapContainer
@@ -34,6 +62,7 @@ class BusMap extends Component {
               itemsStop={this.props.itemsStop}
               isLoadedStops={this.props.isLoadedStops}
             />
+            <Polyline pathOptions={{ color: "lime" }} positions={polyline} />
           </MapContainer>
         </div>
       );

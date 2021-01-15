@@ -1,14 +1,16 @@
 import React, { Component } from "react";
-import { Marker, Popup } from "react-leaflet";
-
-import { busStopIcon } from "../icon";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import L from "leaflet";
+import { busIcon, busStopIcon } from "../icon";
 import { v4 as uuidv4 } from "uuid";
 
 class BusStops extends Component {
   render() {
     if (!this.props.isLoadedStops) {
+      console.log("BusStios not Loaded");
       return "ok";
     } else {
+      console.log("Bus Stops Loaded");
       return this.props.itemsStop.map((item) => {
         return (
           <Marker
